@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 const express = require("express")
+const mongoose = require("mongoose")
 const logger = require("morgan")
 const bodyParser = require("body-parser")
 const cors = require("cors")
@@ -21,6 +22,8 @@ const routes = require("./routes/index.js")
 // )
 // app.use(bodyParser.json())
 
+app.use(express.json())
+
 if (environment !== "production") {
 	app.use(logger("dev"))
 }
@@ -34,6 +37,23 @@ app.use("/api/v1", (req, res, next) => {
 	res.render("landing")
 	next()
 })
+app.use("/", (req, res, next) => {
+	res.status("404").json({ message: "Not found" })
+})
+
+var db = mongoose.connect(
+	process.env.MONGO_LOCAL_CONN_URL,
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useCreateIndex: true,
+	},
+	function (error) {
+		if (error) console.log(error)
+
+		console.log("DB connection successful")
+	}
+)
 
 app.listen(`${stage.port}`, () => {
 	console.log(`Server now listening at localhost:${stage.port}`)
