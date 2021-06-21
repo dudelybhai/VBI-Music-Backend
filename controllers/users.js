@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const User = require("../models/users")
+// const Playlist = require("../models/playlists")
 
 module.exports = {
 	add: (req, res) => {
@@ -86,6 +87,27 @@ module.exports = {
 			res.status(status).send(result)
 		})
 	},
+	// create: (req, res) => {
+	// 	let result = {}
+	// 	let status = 200
+
+	// 	let myPlayListAggregator = Playlist.aggregate([
+	// 		{
+	// 			$lookup: {
+	// 				from: "playlist",
+	// 				localField: "_id",
+	// 				foreignField: "user", // field in the items collection
+	// 				as: "user_playlist",
+	// 			},
+	// 		},
+	// 		{
+	// 			$unwind: {
+	// 				path: "$user_playlist",
+	// 				preserveNullAndEmptyArrays: true,
+	// 			},
+	// 		},
+	// 	])
+	// },
 
 	// logout: (req, res) => {
 	// 	try {

@@ -4,16 +4,17 @@ const environment = process.env.NODE_ENV
 const stage = require("../config")[environment]
 
 const Schema = mongoose.Schema
-const SongSchema = require("./songs")
+const SongsSchema = require("./songs")
 
 const playlistSchema = new Schema({
-	name: {
+	playlist_name: {
 		type: "String",
 		required: true,
 		trim: true,
 		unique: true,
 	},
-	songs: [SongSchema],
+	songs: [],
+	user: { type: Schema.Types.ObjectId, ref: "User" },
 })
 
 module.exports = mongoose.model("Playlist", playlistSchema) // instance of schema
