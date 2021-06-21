@@ -87,39 +87,4 @@ module.exports = {
 			res.status(status).send(result)
 		})
 	},
-	// create: (req, res) => {
-	// 	let result = {}
-	// 	let status = 200
-
-	// 	let myPlayListAggregator = Playlist.aggregate([
-	// 		{
-	// 			$lookup: {
-	// 				from: "playlist",
-	// 				localField: "_id",
-	// 				foreignField: "user", // field in the items collection
-	// 				as: "user_playlist",
-	// 			},
-	// 		},
-	// 		{
-	// 			$unwind: {
-	// 				path: "$user_playlist",
-	// 				preserveNullAndEmptyArrays: true,
-	// 			},
-	// 		},
-	// 	])
-	// },
-
-	// logout: (req, res) => {
-	// 	try {
-	// 		return res.status(200).json({
-	// 			status: 200,
-	// 			message: "logout succesfully",
-	// 		})
-	// 	} catch (e) {
-	// 		return res.status(400).json({
-	// 			status: 400,
-	// 			message: e.message,
-	// 		})
-	// 	}
-	// },
 }
