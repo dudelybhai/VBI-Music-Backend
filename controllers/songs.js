@@ -39,4 +39,14 @@ module.exports = {
 			res.status(status).send(result)
 		})
 	},
+	searchSong: async function (req, res) {
+		let result = {}
+		let status = 200
+		let searchValue = req.query.value
+		console.log(searchValue)
+		var song_details = await Song.find({
+			title: new RegExp(searchValue, "i"),
+		})
+		res.status(200).send(song_details)
+	},
 }

@@ -64,4 +64,5 @@ module.exports = {
 			res.status(status).send(result)
 		})
 	},
+
 }
